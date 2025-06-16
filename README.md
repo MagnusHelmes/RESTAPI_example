@@ -1,4 +1,4 @@
-# SectorChoice by Magnus Lodi
+# SectorChoice
 
 **SectorChoice** is a Spring Boot web application that allows users to select one or more hierarchical sectors of interest, provide their name, agree to terms, and submit their selection. The form uses server-side validation and persists user choices across sessions.
 
@@ -42,7 +42,7 @@ mvn spring-boot:run
 or
 
 ```bash
-java -jar target/sectorchoice-X.X.X-SNAPSHOT.jar
+java -jar target/sectorchoice-0.1.4-SNAPSHOT.jar
 ``` 
 
 
@@ -61,8 +61,11 @@ mvn test
 ```
 
 Tests include:
-- Unit tests (`UserService`, `UserFormController`, `GlobalExceptionHandler`)
+- Unit tests (`UserService`, `SectorService`, `UserFormController`, `GlobalExceptionHandler`)
+- DTO validation test (`UserSelectionDTOTest`)
+- Session logic test (`SessionExpiryTest`)
 - Integration test (`SectorChoiceIntegrationTest`) using MockMvc
+
 
 ---
 
@@ -103,21 +106,6 @@ src/
 
 ---
 
-## 📘 Roadmap (Suggestions)
-
-- [ ] Add persistent DB support (PostgreSQL, etc.)
-- [ ] Improve frontend design with feedback animations
-- [ ] Add user-edit capability
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License. See `LICENSE` for details.
-
----
-
-## 🙌 Acknowledgments
-
-- [Spring Boot](https://spring.io/projects/spring-boot)
-- [Thymeleaf](https://www.thymeleaf.org/)

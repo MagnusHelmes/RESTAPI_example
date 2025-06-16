@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title} ?: 'Sector Choice Form'">Sector Choice Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="~{fragments/components :: header}"></div>
+
+<h1>Select Your Sector</h1>
+
+<div th:replace="~{fragments/components :: success(${successMessage})}"></div>
+
+<form action="#" th:action="@{/}" th:object="${userForm}" method="post" autocomplete="off">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{userName}" required minlength="2" />
+    <div th:replace="~{fragments/components :: fieldErrors('userName')}"></div>
+
+    <label for="sectorIds">Sectors:</label>
+    <select id="sectorIds" th:field="*{sectorIds}" multiple size="12" required>
+        <option th:each="sector : ${sectors}"
+                th:value="${sector.sectorId}"
+                th:utext="${sector.indentedName}">
+        </option>
+    </select>
+    <div th:replace="~{fragments/components :: fieldErrors('sectorIds')}"></div>
+
+    <div class="checkbox-wrapper">
+        <label>
+            <input type="checkbox" th:field="*{agreeToTerms}" required />
+            I agree to the terms
+        </label>
+        <div th:replace="~{fragments/components :: fieldErrors('agreeToTerms')}"></div>
+    </div>
+
+
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>
